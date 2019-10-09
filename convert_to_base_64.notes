@@ -1,0 +1,14 @@
+
+# cd to the images directory and produce our commands:
+
+for FILE in $(ls *.png); do COMMAND="sed -i 's#$FILE#data:image/png;base64,$(base64 -w 0 $FILE)#' ../../stylesheets/full-stylesheet.css"; echo $COMMAND; done > convert_pngs.sh
+
+# Open convert_pngs.sh and add #!/bin/bash then chmod 755 
+# run convert_pngs.sh
+
+# Now we need to regex replace the other side of the css
+
+cat  ../../stylesheets/full-stylesheet.css | sed 's#background-image#bckgrdimg#' | sed 's#background.*url.*data#background: url(data#' |  sed 's#bckgrdimg.*url.*data#background-image: url(data#' > full-stylesheet-base64.css
+
+
+
