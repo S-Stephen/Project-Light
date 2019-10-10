@@ -14,5 +14,10 @@ for FILE in $(ls *.svg); do COMMAND="sed -i 's#$FILE#data:image/svg+xml;base64,$
 
 cat  ../../stylesheets/full-stylesheet1.css | sed 's#background-image#bckgrdimg#' | sed 's#background.*url.*data#background: url(data#' |  sed 's#bckgrdimg.*url.*data#background-image: url(data#' > full-stylesheet-base64.css
 
+sed -i 's/bckgrdimg:/background-image:/g' full-stylesheet-base64.css
+
+# TODO
+
+some color codes will also need replacing (these appear between background: || background-image: and url - diff full-stylesheet-base64.css with ../../stylesheets/full-stylesheet1.css to identify the ones to place back in
 
 
